@@ -27,4 +27,22 @@ class Posts_api extends RestController {
             $this->response( $posts, 200 );
         }
     }
+    public function posts_delete($post_id)
+    {   
+        $posts = $this->posts_model->delete_post($post_id);
+        if ( $posts === TRUE )
+        {
+            $this->response( [
+                'status' => TRUE,
+                'message' => 'Sucessful delte'
+            ], 200 );
+        }
+        else
+        {
+            $this->response( [
+                'status' => false,
+                'message' => 'No such post_id found'
+            ], 404 );
+        }
+    }
 }
