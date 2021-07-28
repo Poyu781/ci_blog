@@ -47,14 +47,24 @@ class Posts_api extends RestController {
             ], 404 );
         }
     }
-    public function posts_post($post_id)
+    public function posts_put($post_id)
     {   
         $request_post_data = $this->input->raw_input_stream;
         $json_data = json_decode($request_post_data, true);
-        $this->posts_model->post_posts($post_id,$json_data);
+        $this->posts_model->put_posts($post_id,$json_data);
         $this->response( [
             'status' => TRUE,
             'message' => 'update'
+        ], 200 );
+    }
+    public function posts_post()
+    {   
+        $request_post_data = $this->input->raw_input_stream;
+        $json_data = json_decode($request_post_data, true);
+        $this->posts_model->post_posts($json_data);
+        $this->response( [
+            'status' => TRUE,
+            'message' => 'insert'
         ], 200 );
     }
 }

@@ -12,9 +12,12 @@
 			$query = $this->db->get_where('posts',array('user_id' => $user_id));
 			return $query->result_array();
 		}
-		public function post_posts($post_id,$input_data){
+		public function put_posts($post_id,$input_data){
 			$this->db->where('id', $post_id);
 			$this->db->update('posts', $input_data);
+		}
+		public function post_posts($input_data){
+			$this->db->insert('posts', $input_data);
 		}
 		public function delete_posts($post_id){
 			$this->db->where('id', $post_id);
