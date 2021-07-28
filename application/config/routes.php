@@ -54,3 +54,4 @@ $route['posts'] = 'posts/index';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['api/posts/?(:any)?'] = 'api/posts_api/posts/$1';
