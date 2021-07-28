@@ -29,7 +29,9 @@ class Posts_api extends RestController {
     }
     public function posts_delete($post_id)
     {   
-        $posts = $this->posts_model->delete_post($post_id);
+        var_dump($this->input->post());
+
+        $posts = $this->posts_model->delete_posts($post_id);
         if ( $posts === TRUE )
         {
             $this->response( [
@@ -44,5 +46,15 @@ class Posts_api extends RestController {
                 'message' => 'No such post_id found'
             ], 404 );
         }
+    }
+    public function posts_post($post_id)
+    {   
+        $request_post_data = $this->input->raw_input_stream;
+        $json_data = json_decode($request_post_data, true);
+        $this->posts_model->post_posts($post_id,$json_data);
+        $this->response( [
+            'status' => TRUE,
+            'message' => 'update'
+        ], 200 );
     }
 }
