@@ -17,10 +17,10 @@
 			}
 		}
 		public function edit($post_id){
-			// Check login
+			
 			$writer_id = $this->posts_model->check_writer($post_id);
 			$account_id = $this->session->userdata('user_id');
-			var_dump(3,$writer_id,$account_id);
+			// Check login
 			if(!$this->session->userdata('logged_in')){
 				redirect('users/login');
 			}
@@ -29,7 +29,7 @@
 			$this->form_validation->set_rules('body', 'Body', 'required');
 
 			if($this->form_validation->run() === FALSE){
-				if($writer_id !== $account_id){
+				if($writer_id !== $account_id and $post_id !== ""){
 						redirect('posts');
 					}
 				$this->load->view('templates/header');
