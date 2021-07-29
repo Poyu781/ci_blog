@@ -1,41 +1,39 @@
 <?php
 	class Posts extends CI_Controller{
+
 		public function index($post_id){
-			if($post_id === '')
-			{
+			if($post_id === ''){
 				$data['title'] = 'Latest Posts';
 				$this->load->view('templates/header');
 				$this->load->view('posts/index', $data);
 				$this->load->view('templates/footer');
 			}
-			else
-			{
+			else{
 				$data['post_id'] = $post_id;
 				$this->load->view('templates/header');
 				$this->load->view('posts/single_post',$data);
 				$this->load->view('templates/footer');
 			}
 		}
+
 		public function edit($post_id){
-			
 			$writer_id = $this->posts_model->check_writer($post_id);
 			$account_id = $this->session->userdata('user_id');
 			// Check login
 			if(!$this->session->userdata('logged_in')){
 				redirect('users/login');
 			}
-
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('body', 'Body', 'required');
-
 			if($this->form_validation->run() === FALSE){
 				if($writer_id !== $account_id and $post_id !== ""){
 						redirect('posts');
-					}
+				}
 				$this->load->view('templates/header');
 				$this->load->view('posts/edit');
 				$this->load->view('templates/footer');
-			} else {
+			} 
+			else {
 				$data['body'] = $this->input->post('body');
 				$data['title'] = $this->input->post('title');
 				$post_id = $this->input->post('id');

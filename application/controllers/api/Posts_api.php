@@ -20,37 +20,34 @@ class Posts_api extends RestController {
         else{
             $posts = $this->posts_model->get_post($post_id);
         }
-        if ( $posts === array() )
-        {
+        if ( $posts === array() ){
             $this->response( [
                 'status' => false,
                 'message' => 'No such user found'
             ], 200 );
         }
-        else
-        {   
+        else{   
             $this->response( $posts, 200 );
         }
     }
+
     public function posts_delete($post_id)
     {  
-
         $posts = $this->posts_model->delete_posts($post_id);
-        if ( $posts === TRUE )
-        {
+        if ( $posts === TRUE ){
             $this->response( [
                 'status' => TRUE,
                 'message' => 'Successful delete'
             ], 200 );
         }
-        else
-        {
+        else{
             $this->response( [
                 'status' => false,
                 'message' => 'No such post_id found'
             ], 404 );
         }
     }
+
     public function posts_put($post_id)
     {   
         $request_post_data = $this->input->raw_input_stream;
@@ -61,6 +58,7 @@ class Posts_api extends RestController {
             'message' => 'update'
         ], 200 );
     }
+    
     public function posts_post()
     {   
         $request_post_data = $this->input->raw_input_stream;
