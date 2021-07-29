@@ -10,6 +10,7 @@
 		}
 		public function get_post($post_id){
 			if ($post_id === ''){
+				$this->db->order_by('posts.created_at', 'DESC');
 				$query = $this->db->get('posts');
 				return $query->result_array();
 			}
