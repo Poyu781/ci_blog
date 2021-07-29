@@ -39,7 +39,7 @@ fetch(`/ci-framework/api/posts?user=${memberId}`)
         }
         const buttons = document.querySelectorAll(".btn")
         for (const button of buttons) {
-            button.addEventListener('click', function(event) {
+            button.addEventListener('click', function(e) {
             fetch(`/ci-framework/api/posts/${button.id}`,{
                 method: "DELETE",
                 mode: 'same-origin',
@@ -48,7 +48,8 @@ fetch(`/ci-framework/api/posts?user=${memberId}`)
                     return res.json()
                 })
                 .then((json) => {
-                    console.log('msg:', json)
+                    alert(json.message)
+                    location.reload();
                 })
           })
         }

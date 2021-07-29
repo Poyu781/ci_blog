@@ -33,8 +33,7 @@ class Posts_api extends RestController {
         }
     }
     public function posts_delete($post_id)
-    {   
-        var_dump($this->input->post());
+    {  
 
         $posts = $this->posts_model->delete_posts($post_id);
         if ( $posts === TRUE )
