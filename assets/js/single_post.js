@@ -1,4 +1,13 @@
 const postSection = document.querySelector(".post")
+const commentSection = document.querySelector(".comment")
+const sendCommentButton = document.querySelector(".btn_comment")
+const commentText = document.querySelector("textarea[name=comment_text]")
+
+sendCommentButton.addEventListener("click",()=>{
+    console.log(commentText.value)
+
+})
+
 const postId = postSection.id
 
 console.log(postId)
@@ -22,3 +31,30 @@ fetch(`/ci-framework/api/posts/${postId}`)
         console.log(postData)
 
     });
+
+fetch(`/ci-framework/api/comments?posts=${postId}`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((commentsData) => {
+        commentsLen = commentsData.length
+        for (let i = 0 ; i <commentsLen ;i++){
+            let commentData = commentsData[i]
+            nodeCreated = document.createElement("div")
+            nodeCreated.classList.add("comment_wrapper");
+            text = `
+            <div class="panel panel-default">
+            <div class="panel-body">
+            ${commentData.body}
+            </div>
+            <div class="panel-footer"><small>${commentData.username} - ${commentData.created_at}</small></div>
+            </div>
+            `
+            nodeCreated.innerHTML = text
+            commentSection.append(nodeCreated)
+        }
+
+    });
+
+
+
