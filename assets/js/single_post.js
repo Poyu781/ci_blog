@@ -53,6 +53,8 @@ sendCommentButton.addEventListener("click",()=>{
             `
             nodeCreated.innerHTML = text
             commentSection.append(nodeCreated)
+            commentText.value = ""
+            console.log(3)
         })
 })
 

@@ -16,7 +16,7 @@ idSection.value = postId
             
             setTimeout(() => {
                 CKEDITOR.instances['editor1'].setData(postData.body)
-            }, 2);
+            }, 300);
 
             
         });

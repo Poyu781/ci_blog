@@ -17,10 +17,14 @@
 			}
 		}
 		public function edit($post_id){
-			$post_id = $post_id;
 			// Check login
+			$writer_id = $this->posts_model->check_writer($post_id);
+			$account_id = $this->session->userdata('user_id');
 			if(!$this->session->userdata('logged_in')){
 				redirect('users/login');
+			}
+			elseif($writer_id !== $account_id){
+				redirect('posts');
 			}
 
 			$this->form_validation->set_rules('title', 'Title', 'required');

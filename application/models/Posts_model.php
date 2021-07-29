@@ -29,4 +29,17 @@
 			$this->db->delete('posts');
 			return true;
 		}
+		public function check_writer($post_id)
+		{
+			$result = $this->db->get_where('posts',array('id' => $post_id))->row_array();
+			if ($result != null)
+			{
+				return $result['user_id'];
+			}
+			else{
+				return false;
+			}
+			;
+
+		}
     }
