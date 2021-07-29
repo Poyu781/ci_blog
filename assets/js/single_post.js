@@ -30,7 +30,6 @@ sendCommentButton.addEventListener("click",()=>{
         body : JSON.stringify(data),
         headers : {
             'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json'
         },
     })
         .then((res)=>{

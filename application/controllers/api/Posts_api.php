@@ -25,7 +25,7 @@ class Posts_api extends RestController {
             $this->response( [
                 'status' => false,
                 'message' => 'No such user found'
-            ], 404 );
+            ], 200 );
         }
         else
         {   
@@ -41,7 +41,7 @@ class Posts_api extends RestController {
         {
             $this->response( [
                 'status' => TRUE,
-                'message' => 'Sucessful delte'
+                'message' => 'Successful delete'
             ], 200 );
         }
         else
