@@ -2,13 +2,33 @@ const postSection = document.querySelector(".post")
 const commentSection = document.querySelector(".comment")
 const sendCommentButton = document.querySelector(".btn_comment")
 const commentText = document.querySelector("textarea[name=comment_text]")
-
+const postId = postSection.id
 sendCommentButton.addEventListener("click",()=>{
-    console.log(commentText.value)
+    data = {body:commentText.value,post_id:postId}
+    fetch("/ci-framework/api/comments",{
+        method: "POST",
+        mode: 'same-origin',
+        
+        body : JSON.stringify(data),
+        headers : {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+        },
+    })
 
+        .then((res)=>{
+
+            return res.json()
+        })
+        .catch((error) => {
+            console.log('Error:', error)
+        })
+        .then((json)=>{
+            console.log(json)
+        })
 })
 
-const postId = postSection.id
+
 
 console.log(postId)
 let host_url = window.location;

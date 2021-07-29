@@ -20,31 +20,30 @@ class Comments_api extends RestController {
         $this->response( $comments, 200 );
 
     }
-    public function posts_delete($post_id)
-    {   
-        var_dump($this->input->post());
-
-        $posts = $this->posts_model->delete_posts($post_id);
-        if ( $posts === TRUE )
-        {
-            $this->response( [
-                'status' => TRUE,
-                'message' => 'Sucessful delte'
-            ], 200 );
-        }
-        else
-        {
-            $this->response( [
-                'status' => false,
-                'message' => 'No such post_id found'
-            ], 404 );
-        }
-    }
-    public function posts_post($post_id)
+    // public function comments_delete($post_id)
+    // {   
+    //     $posts = $this->posts_model->delete_comments($post_id);
+    //     if ( $posts === TRUE )
+    //     {
+    //         $this->response( [
+    //             'status' => TRUE,
+    //             'message' => 'Sucessful delte'
+    //         ], 200 );
+    //     }
+    //     else
+    //     {
+    //         $this->response( [
+    //             'status' => false,
+    //             'message' => 'No such post_id found'
+    //         ], 404 );
+    //     }
+    // }
+    public function comments_post()
     {   
         $request_post_data = $this->input->raw_input_stream;
         $json_data = json_decode($request_post_data, true);
-        $this->posts_model->post_posts($post_id,$json_data);
+        $json_data['user_id'] = $this->session->userdata('user_id');
+        $this->comments_model->post_comments($json_data);
         $this->response( [
             'status' => TRUE,
             'message' => 'update'
