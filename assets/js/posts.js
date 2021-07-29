@@ -1,17 +1,17 @@
 const postSection = document.querySelector(".post__section")
 
 fetch(`/ci-framework/api/posts`)
-    .then((response) => {
-        return response.json();
-    })
-    .then((postsData) => {
-        commentsLen = postsData.length
-        for (let i = 0 ; i <commentsLen ;i++){
-            let postData = postsData[i]
-            nodeCreated = document.createElement("div")
-            nodeCreated.classList.add("post_wrapper");
-            nodeCreated.classList.add("jumbotron");
-            text = `
+	.then((response) => {
+		return response.json();
+	})
+	.then((postsData) => {
+		commentsLen = postsData.length
+		for (let i = 0; i < commentsLen; i++) {
+			let postData = postsData[i]
+			nodeCreated = document.createElement("div")
+			nodeCreated.classList.add("post_wrapper");
+			nodeCreated.classList.add("jumbotron");
+			text = `
             <a href=/ci-framework/posts/${postData.id}>
             <h3>${postData.title}</h3>
             </a>
@@ -25,8 +25,8 @@ fetch(`/ci-framework/api/posts`)
             </div>	
             
             `
-            nodeCreated.innerHTML = text
-            postSection.append(nodeCreated)
-        }
+			nodeCreated.innerHTML = text
+			postSection.append(nodeCreated)
+		}
 
-    });
+	});
