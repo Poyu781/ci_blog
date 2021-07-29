@@ -1,1 +1,1 @@
-<h1>home</h1>
+<h1>Home , please click blog to see all articles ~</h1>
