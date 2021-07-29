@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -75,10 +76,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '34.146.36.62',
-	'username' => 'airflow_remo',
-	'password' => 'password',
-	'database' => 'ciblog',
+	'hostname' => $_ENV['DB_ROUTE'],
+	'username' => $_ENV['DB_USER'],
+	'password' => $_ENV['DB_PASSWORD'],
+	'database' => $_ENV['DATABASE'],
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
