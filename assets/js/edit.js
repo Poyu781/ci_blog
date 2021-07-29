@@ -1,6 +1,6 @@
 const url = window.location.pathname;
 const postId = url.split('/')[4]
-const bodySection = document.querySelector("textarea[name=body]")
+const bodySection = document.querySelector("#editor1")
 const titleSection = document.querySelector("input[name=title]")
 const idSection = document.querySelector("input[name=id]")
 if (postId){
@@ -12,7 +12,12 @@ idSection.value = postId
         .then((postData) => {
             console.log(postData)
             postData = postData[0]
-            bodySection.innerHTML = postData.body
             titleSection.value = postData.title
+            
+            setTimeout(() => {
+                CKEDITOR.instances['editor1'].setData(postData.body)
+            }, 2);
+
+            
         });
 }

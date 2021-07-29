@@ -3,6 +3,7 @@
 <head>
 	<title>ciBlog</title>
 	<link rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.min.css">
+	<script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 					<li><a href="<?php echo base_url(); ?>users/register">Register</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('logged_in')) : ?>
-					<li ><a id="username"><?php echo $this->session->userdata('username'); ?></a></li>
+					<li ><a href="<?php echo base_url(); ?>members" id="username"><?php echo $this->session->userdata('username'); ?></a></li>
 					<li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
 					<?php endif; ?>
 				</ul>
