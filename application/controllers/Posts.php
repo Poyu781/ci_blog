@@ -10,9 +10,9 @@
 			}
 			else
 			{
-
+				$data['post_id'] = $post_id;
 				$this->load->view('templates/header');
-				$this->load->view('posts/single_post');
+				$this->load->view('posts/single_post',$data);
 				$this->load->view('templates/footer');
 			}
 		}

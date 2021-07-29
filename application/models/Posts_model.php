@@ -4,12 +4,16 @@
 			$this->load->database();
 		}
 
-		public function get_posts($user_id){
-			if ($user_id === null){
+		public function get_posts_by_user($user_id){
+			$query = $this->db->get_where('posts',array('user_id' => $user_id));
+			return $query->result_array();
+		}
+		public function get_post($post_id){
+			if ($post_id === ''){
 				$query = $this->db->get('posts');
 				return $query->result_array();
 			}
-			$query = $this->db->get_where('posts',array('user_id' => $user_id));
+			$query = $this->db->get_where('posts',array('id' => $post_id));
 			return $query->result_array();
 		}
 		public function put_posts($post_id,$input_data){

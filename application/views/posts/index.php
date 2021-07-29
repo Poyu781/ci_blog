@@ -1,5 +1,5 @@
 <h2><?= $title ?></h2>
-<section class="post__section">
+<section class="post__section jumbotron" >
 	<h3>title</h3>
 		<div class="row">
 			<div class="col-md-9">

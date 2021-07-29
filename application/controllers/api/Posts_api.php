@@ -11,10 +11,15 @@ class Posts_api extends RestController {
         parent::__construct();
     }
 
-    public function posts_get()
+    public function posts_get($post_id)
     {   
         $user_id = $this->input->get('user');
-        $posts = $this->posts_model->get_posts($user_id);
+        if ($user_id != null){
+            $posts = $this->posts_model->get_posts_by_user($user_id);
+        }
+        else{
+            $posts = $this->posts_model->get_post($post_id);
+        }
         if ( $posts === array() )
         {
             $this->response( [
