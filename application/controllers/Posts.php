@@ -1,7 +1,6 @@
 <?php
 	class Posts extends CI_Controller{
 		public function index($post_id){
-			var_dump($this->session->userdata('logged_in'));
 			if($post_id === '')
 			{
 				$data['title'] = 'Latest Posts';

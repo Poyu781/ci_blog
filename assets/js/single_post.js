@@ -3,8 +3,26 @@ const commentSection = document.querySelector(".comment")
 const sendCommentButton = document.querySelector(".btn_comment")
 const commentText = document.querySelector("textarea[name=comment_text]")
 const postId = postSection.id
+
+
 sendCommentButton.addEventListener("click",()=>{
-    data = {body:commentText.value,post_id:postId}
+    
+    let userName
+    try{
+        userName = document.querySelector("#username").text
+    }
+    catch{
+        userName = 'null'
+    }
+    let TimeNow= new Date();
+    let yyyy = TimeNow.toLocaleDateString().slice(0,4)
+    let MM = (TimeNow.getMonth()+1<10 ? '0' : '')+(TimeNow.getMonth()+1);
+    let dd = (TimeNow.getDate()<10 ? '0' : '')+TimeNow.getDate();
+    let h = (TimeNow.getHours()<10 ? '0' : '')+TimeNow.getHours();
+    let m = (TimeNow.getMinutes()<10 ? '0' : '')+TimeNow.getMinutes();
+    let s = (TimeNow.getSeconds()<10 ? '0' : '')+TimeNow.getSeconds(); 
+    let timeNow = `${yyyy}-${MM}-${dd} ${h}:${m}:${s}`;
+    data = {body:commentText.value,post_id:postId,created_at:timeNow}
     fetch("/ci-framework/api/comments",{
         method: "POST",
         mode: 'same-origin',
@@ -15,7 +33,6 @@ sendCommentButton.addEventListener("click",()=>{
             'Content-Type': 'application/json'
         },
     })
-
         .then((res)=>{
 
             return res.json()
@@ -24,7 +41,19 @@ sendCommentButton.addEventListener("click",()=>{
             console.log('Error:', error)
         })
         .then((json)=>{
-            console.log(json)
+            console.log(123)
+            nodeCreated = document.createElement("div")
+            nodeCreated.classList.add("comment_wrapper");
+            text = `
+            <div class="panel panel-default">
+            <div class="panel-body">
+            ${data.body}
+            </div>
+            <div class="panel-footer"><small>${userName} - ${timeNow}</small></div>
+            </div>
+            `
+            nodeCreated.innerHTML = text
+            commentSection.append(nodeCreated)
         })
 })
 
